@@ -1,0 +1,27 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: echo "Hello World" > index.html
+  displayName: 'Create index.html file'
+
+- task: CopyFiles@2
+  inputs:
+    SourceFolder: '$(System.DefaultWorkingDirectory)'
+    Contents: 'index.html'
+    TargetFolder: '$(Build.ArtifactStagingDirectory)'
+
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: '1ec5726a-b7e7-47a2-98e0-840e2d856e4b' # Replace with your Azure subscription
+    appType: webApp
+    appName: 'AnkitDevpethWebsite' # Replace with your Azure Web App name
+    package: '$(Build.ArtifactStagingDirectory)/index.html'
