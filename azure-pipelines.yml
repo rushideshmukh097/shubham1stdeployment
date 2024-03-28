@@ -6,8 +6,7 @@
 trigger:
 - master
 
-pool:
-  vmImage: 'ubuntu-latest'
+pool: MyubuntuAgentPool
 
 steps:
 - script: echo "Hello World" > index.html
@@ -21,7 +20,7 @@ steps:
 
 - task: AzureWebApp@1
   inputs:
-    azureSubscription: '1ec5726a-b7e7-47a2-98e0-840e2d856e4b' # Replace with your Azure subscription
+    azureSubscription: '23391da9-5b2e-429e-9289-9e4398f731bc' # Replace with your Azure subscription
     appType: webApp
-    appName: 'AnkitDevpethWebsite' # Replace with your Azure Web App name
+    appName: 'twoerror' # Replace with your Azure Web App name
     package: '$(Build.ArtifactStagingDirectory)/index.html'
